@@ -6,4 +6,6 @@ test-stepping.yaml
 *.xml
 report/
 reports/
+results/
 **/report-output/
+secrets.properties
