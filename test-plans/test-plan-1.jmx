@@ -5,6 +5,8 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
@@ -18,24 +20,24 @@
         <stringProp name="HTTPSampler.implementation"></stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
         <collectionProp name="CookieManager.cookies"/>
         <boolProp name="CookieManager.clearEachIteration">false</boolProp>
         <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
       </CookieManager>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Scenario 1 - Using Filters">
-        <stringProp name="ThreadGroup.num_threads">${__P(THREADS,1)}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">${__P(RAMPUP,1)}</stringProp>
-        <stringProp name="ThreadGroup.duration">${__P(DURATION,1)}</stringProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Scenario 1 - Using Filters">
+        <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <intProp name="LoopController.loops">-1</intProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-        </elementProp>
-      </ThreadGroup>
+        <stringProp name="TargetLevel">${__P(TARGET,1)}</stringProp>
+        <stringProp name="RampUp">${__P(RAMPUP,1)}</stringProp>
+        <stringProp name="Steps">${__P(RAMPUPSTEPS,1)}</stringProp>
+        <stringProp name="Hold">${__P(HOLD_TARGET_TIME,1)}</stringProp>
+        <stringProp name="LogFilename"></stringProp>
+        <stringProp name="Iterations"></stringProp>
+        <boolProp name="same_user_on_next_iteration">false</boolProp>
+        <stringProp name="Unit">M</stringProp>
+      </com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup>
       <hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Scenario 1 - Using Filters" enabled="true"/>
         <hashTree>
@@ -447,18 +449,18 @@ vars.put(&quot;firstDigit&quot;, maxPrice[0])
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Scenario 2 - Registering an Account" enabled="true">
-        <stringProp name="ThreadGroup.num_threads">${__P(THREADS,1)}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">${__P(RAMPUP,1)}</stringProp>
-        <stringProp name="ThreadGroup.duration">${__P(DURATION,1)}</stringProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Scenario 2 - Registering an Account">
+        <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <intProp name="LoopController.loops">-1</intProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-        </elementProp>
-      </ThreadGroup>
+        <stringProp name="TargetLevel">${__P(TARGET,1)}</stringProp>
+        <stringProp name="RampUp">${__P(RAMPUP,1)}</stringProp>
+        <stringProp name="Steps">${__P(RAMPUPSTEPS,1)}</stringProp>
+        <stringProp name="Hold">${__P(HOLD_TARGET_TIME,1)}</stringProp>
+        <stringProp name="LogFilename"></stringProp>
+        <stringProp name="Iterations"></stringProp>
+        <boolProp name="same_user_on_next_iteration">false</boolProp>
+        <stringProp name="Unit">M</stringProp>
+      </com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup>
       <hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Scenario 2 - Registering an Account" enabled="true"/>
         <hashTree>
@@ -713,26 +715,26 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Scenario 3 - Loading Products" enabled="true">
-        <stringProp name="ThreadGroup.num_threads">${__P(THREADS,1)}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">${__P(RAMPUP,1)}</stringProp>
-        <stringProp name="ThreadGroup.duration">${__P(DURATION,1)}</stringProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Scenario 3 - Loading Products">
+        <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <intProp name="LoopController.loops">-1</intProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-        </elementProp>
-      </ThreadGroup>
+        <stringProp name="TargetLevel">${__P(TARGET,1)}</stringProp>
+        <stringProp name="RampUp">${__P(RAMPUP,1)}</stringProp>
+        <stringProp name="Steps">${__P(RAMPUPSTEPS,1)}</stringProp>
+        <stringProp name="Hold">${__P(HOLD_TARGET_TIME,1)}</stringProp>
+        <stringProp name="LogFilename"></stringProp>
+        <stringProp name="Iterations"></stringProp>
+        <boolProp name="same_user_on_next_iteration">false</boolProp>
+        <stringProp name="Unit">M</stringProp>
+      </com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup>
       <hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Scenario 3 - Loading Products"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Scenario 3 - Loading Products" enabled="true"/>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click &quot;Load more&quot;">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click &quot;Load more&quot;" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Click &quot;Load more&quot;">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Click &quot;Load more&quot;" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -815,7 +817,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click &quot;Load more&quot;">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click &quot;Load more&quot;" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
@@ -900,11 +902,11 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click &quot;Load more&quot;">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click &quot;Load more&quot;" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Click &quot;Load more&quot;">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Click &quot;Load more&quot;" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1072,7 +1074,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click &quot;Load more&quot;">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click &quot;Load more&quot;" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
@@ -1157,7 +1159,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click &quot;Load more&quot;">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click &quot;Load more&quot;" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
@@ -1244,28 +1246,26 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Scenario 4 - Buying A Product">
-        <stringProp name="ThreadGroup.num_threads">${__P(THREADS,1)}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">${__P(RAMPUP,1)}</stringProp>
-        <stringProp name="ThreadGroup.duration">${__P(DURATION,1)}</stringProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Scenario 4 - Buying A Product">
+        <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <intProp name="LoopController.loops">-1</intProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-        </elementProp>
-      </ThreadGroup>
+        <stringProp name="TargetLevel">${__P(TARGET,1)}</stringProp>
+        <stringProp name="RampUp">${__P(RAMPUP,1)}</stringProp>
+        <stringProp name="Steps">${__P(RAMPUPSTEPS,1)}</stringProp>
+        <stringProp name="Hold">${__P(HOLD_TARGET_TIME,1)}</stringProp>
+        <stringProp name="LogFilename"></stringProp>
+        <stringProp name="Iterations"></stringProp>
+        <boolProp name="same_user_on_next_iteration">false</boolProp>
+        <stringProp name="Unit">M</stringProp>
+      </com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Scenario 4 - Buying A Product">
-          <boolProp name="TransactionController.includeTimers">false</boolProp>
-        </TransactionController>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Scenario 4 - Buying A Product" enabled="true"/>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Complete The Registration Form and Click &quot;Create account&quot;">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Complete The Registration Form and Click &quot;Create account&quot;" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Complete The Registration Form and Click &quot;Create account&quot;">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Complete The Registration Form and Click &quot;Create account&quot;" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1286,7 +1286,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer">
+              <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
                 <stringProp name="ConstantTimer.delay">4000</stringProp>
                 <stringProp name="RandomTimer.range">1000</stringProp>
                 <stringProp name="TestPlan.comments">Recorded:220872ms</stringProp>
@@ -1342,7 +1342,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Complete The Registration Form and Click &quot;Create account&quot;">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Complete The Registration Form and Click &quot;Create account&quot;" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1415,7 +1415,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Complete The Registration Form and Click &quot;Create account&quot;">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Complete The Registration Form and Click &quot;Create account&quot;" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1496,7 +1496,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Complete The Registration Form and Click &quot;Create account&quot;">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Complete The Registration Form and Click &quot;Create account&quot;" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1577,7 +1577,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Complete The Registration Form and Click &quot;Create account&quot;">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Complete The Registration Form and Click &quot;Create account&quot;" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1600,7 +1600,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="Next-Url" elementType="Header">
                     <stringProp name="Header.name">Next-Url</stringProp>
@@ -1658,7 +1658,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Complete The Registration Form and Click &quot;Create account&quot;">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Complete The Registration Form and Click &quot;Create account&quot;" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1736,11 +1736,11 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Browse Products">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Browse Products" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Click &quot;Load more&quot;">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Click &quot;Load more&quot;" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1770,7 +1770,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="Sec-Fetch-Mode" elementType="Header">
                     <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -1815,7 +1815,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                 </collectionProp>
               </HeaderManager>
               <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Extract productId">
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Extract productId" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">productId</stringProp>
                 <stringProp name="JSONPostProcessor.jsonPathExprs">$[2].result.data.json.docs[?(@.name =~ /^JMeter.*/)].id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
@@ -1824,11 +1824,11 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Visit a Product Page">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Visit a Product Page" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1851,13 +1851,13 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer">
+              <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
                 <stringProp name="ConstantTimer.delay">3000</stringProp>
                 <stringProp name="RandomTimer.range">1000</stringProp>
                 <stringProp name="TestPlan.comments">Recorded:94937ms</stringProp>
               </UniformRandomTimer>
               <hashTree/>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="Next-Url" elementType="Header">
                     <stringProp name="Header.name">Next-Url</stringProp>
@@ -1915,7 +1915,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1938,7 +1938,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="Next-Url" elementType="Header">
                     <stringProp name="Header.name">Next-Url</stringProp>
@@ -1996,7 +1996,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2077,7 +2077,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2158,7 +2158,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2231,7 +2231,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2310,7 +2310,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2386,7 +2386,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Visit a Product Page" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2468,11 +2468,11 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Add a Product To The Cart">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Add a Product To The Cart" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add a Product To The Cart">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add a Product To The Cart" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2551,7 +2551,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add a Product To The Cart">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add a Product To The Cart" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2628,11 +2628,11 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click Checkout">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click Checkout" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Click Checkout">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Click Checkout" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2653,13 +2653,13 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer">
+              <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
                 <stringProp name="ConstantTimer.delay">3000</stringProp>
                 <stringProp name="RandomTimer.range">1000</stringProp>
                 <stringProp name="TestPlan.comments">Recorded:26694ms</stringProp>
               </UniformRandomTimer>
               <hashTree/>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="Sec-Fetch-Mode" elementType="Header">
                     <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -2708,7 +2708,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                 </collectionProp>
               </HeaderManager>
               <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Obtain Stripe Payment Intent Client Secret">
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Obtain Stripe Payment Intent Client Secret" enabled="true">
                 <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                 <stringProp name="RegexExtractor.refname">clientSecret</stringProp>
                 <stringProp name="RegexExtractor.regex">(pi_.*)(?=_secret)</stringProp>
@@ -2720,11 +2720,11 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Submit Stripe Payment">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Submit Stripe Payment" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Submit Stripe Payment">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Submit Stripe Payment" enabled="true">
               <stringProp name="HTTPSampler.domain">api.stripe.com</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.path">/v1/payment_intents/${clientSecret}/confirm</stringProp>
@@ -2745,7 +2745,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="" elementType="Header">
                     <stringProp name="Header.name">Stripe-Account</stringProp>
@@ -2754,7 +2754,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                 </collectionProp>
               </HeaderManager>
               <hashTree/>
-              <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager">
+              <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
                 <collectionProp name="AuthManager.auth_list">
                   <elementProp name="" elementType="Authorization">
                     <stringProp name="Authorization.url">https://api.stripe.com</stringProp>
@@ -2769,7 +2769,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Obtain UUID">
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Obtain UUID" enabled="true">
             <stringProp name="scriptLanguage">groovy</stringProp>
             <stringProp name="parameters"></stringProp>
             <stringProp name="filename"></stringProp>
@@ -2779,7 +2779,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
           </JSR223PreProcessor>
           <hashTree/>
         </hashTree>
-        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller"/>
+        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller" enabled="true"/>
         <hashTree/>
       </hashTree>
       <ProxyControl guiclass="ProxyControlGui" testclass="ProxyControl" testname="HTTP(S) Test Script Recorder">
@@ -2877,7 +2877,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -2914,44 +2914,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
         <stringProp name="filename">/home/daniel413x/2025/multitenant-ecommerce/performance-tests/results/load-test.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
-        <boolProp name="ResultCollector.error_logging">false</boolProp>
-        <objProp>
-          <name>saveConfig</name>
-          <value class="SampleSaveConfiguration">
-            <time>true</time>
-            <latency>true</latency>
-            <timestamp>true</timestamp>
-            <success>true</success>
-            <label>true</label>
-            <code>true</code>
-            <message>true</message>
-            <threadName>true</threadName>
-            <dataType>true</dataType>
-            <encoding>false</encoding>
-            <assertions>true</assertions>
-            <subresults>true</subresults>
-            <responseData>false</responseData>
-            <samplerData>false</samplerData>
-            <xml>false</xml>
-            <fieldNames>true</fieldNames>
-            <responseHeaders>false</responseHeaders>
-            <requestHeaders>false</requestHeaders>
-            <responseDataOnError>false</responseDataOnError>
-            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-            <assertionsResultsToSave>0</assertionsResultsToSave>
-            <bytes>true</bytes>
-            <sentBytes>true</sentBytes>
-            <url>true</url>
-            <threadCounts>true</threadCounts>
-            <idleTime>true</idleTime>
-            <connectTime>true</connectTime>
-          </value>
-        </objProp>
-        <stringProp name="filename">/home/daniel413x/2025/multitenant-ecommerce/performance-tests/results/load-test.jtl</stringProp>
-      </ResultCollector>
-      <hashTree/>
-      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -2987,6 +2950,74 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
         </objProp>
         <stringProp name="filename"></stringProp>
       </ResultCollector>
+      <hashTree/>
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="true">
+        <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="influxdbMetricsSender" elementType="Argument">
+              <stringProp name="Argument.name">influxdbMetricsSender</stringProp>
+              <stringProp name="Argument.value">org.apache.jmeter.visualizers.backend.influxdb.HttpMetricsSender</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="influxdbUrl" elementType="Argument">
+              <stringProp name="Argument.name">influxdbUrl</stringProp>
+              <stringProp name="Argument.value">${__P(INFLUX_DB_URL,&quot;&quot;)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="application" elementType="Argument">
+              <stringProp name="Argument.name">application</stringProp>
+              <stringProp name="Argument.value">Broadly Peformance Testing</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="measurement" elementType="Argument">
+              <stringProp name="Argument.name">measurement</stringProp>
+              <stringProp name="Argument.value">jmeter</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="summaryOnly" elementType="Argument">
+              <stringProp name="Argument.name">summaryOnly</stringProp>
+              <stringProp name="Argument.value">true</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="samplersRegex" elementType="Argument">
+              <stringProp name="Argument.name">samplersRegex</stringProp>
+              <stringProp name="Argument.value">.*</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="percentiles" elementType="Argument">
+              <stringProp name="Argument.name">percentiles</stringProp>
+              <stringProp name="Argument.value">90;95;99</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="testTitle" elementType="Argument">
+              <stringProp name="Argument.name">testTitle</stringProp>
+              <stringProp name="Argument.value">Broadly Performance Testing</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="eventTags" elementType="Argument">
+              <stringProp name="Argument.name">eventTags</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="TAG_env" elementType="Argument">
+              <stringProp name="Argument.name">TAG_env</stringProp>
+              <stringProp name="Argument.value">${__P(TAG_ENV,missing_tag_env)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="TAG_scenario" elementType="Argument">
+              <stringProp name="Argument.name">TAG_scenario</stringProp>
+              <stringProp name="Argument.value">${__P(TAG_SCENARIO,missing_tag_scenario)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="influxdbToken" elementType="Argument">
+              <stringProp name="Argument.name">influxdbToken</stringProp>
+              <stringProp name="Argument.value">${__P(INFLUX_DB_TOKEN,&quot;&quot;)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </elementProp>
+        <stringProp name="classname">org.apache.jmeter.visualizers.backend.influxdb.InfluxdbBackendListenerClient</stringProp>
+      </BackendListener>
       <hashTree/>
     </hashTree>
   </hashTree>
