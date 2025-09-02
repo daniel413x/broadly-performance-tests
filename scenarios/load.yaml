@@ -1,0 +1,20 @@
+execution:
+  - scenario: load_test
+    concurrency: 4
+    ramp-up: 2m
+    steps: 2
+    hold-for: 2m
+
+scenarios:
+  load_test:
+    script: "../test-plans/test-plan-1.jmx"
+
+settings:
+  env:
+    TAG_SCENARIO: load
+
+reporting:
+- module: passfail
+  criteria:
+  - fail>5% for 1s, stop as failed
+  - avg-rt>300ms for 10s, stop as failed

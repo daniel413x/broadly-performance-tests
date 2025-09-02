@@ -7,50 +7,45 @@ Fulfill performance testing for the Broadly platform by carrying out **load test
 
 ## Prerequisites
 
-### Apache JMeter
+### BlazeMeter Taurus
 
-Apache JMeter must be installed and available via the CLI as `jmeter`. The project was developed using version 5.6.3.
+BlazeMeter Taurus must be installed and available via the CLI as `bzt`. The project was developed using version 1.16.34.
 
-### Secret credentials
+### Environment variables
 
-A file `secrets.properties` must be made available that contains the following `key=value` pairs (note that values *cannot* be surrounded by quotation marks):
+Environment variables must be defined matching those expected by the file `scenarios/properties.yaml`.
 
 ```bash
-STRIPE_SECRET=VALUE # Found in the Stripe dashboard
-STRIPE_ACCOUNT=VALUE # Found in the Stripe dashboard
-INFLUX_DB_TOKEN=VALUE # Created in the Influx DB GUI
-INFLUX_DB_URL=VALUE # For example: http://localhost:8086/api/v2/write?org=broadly&bucket=jmeter
+export STRIPE_SECRET=VALUE     # Found in the Stripe dashboard
+export STRIPE_ACCOUNT=VALUE  # Found in the Stripe dashboard
+export INFLUX_DB_TOKEN=VALUE # Created in the Influx DB GUI
+export INFLUX_DB_URL=VALUE      # For example: http://localhost:8086/api/v2/write?org=broadly&bucket=jmeter
 ```
-
-in Jenkins, these pairs can be included in a `Credentials` file.
 
 ## Structure
 
-Test plans (`.jmx`) are located in `./test-plans`. The parameters for executing the test plans according to the **test procedures** are located in `./scenarios`.
+Test plans (`.jmx`) are located in `./test-plans`. The `.yaml` configurations for executing the test plans according to the **test procedures** are located in `./scenarios`.
 
 ## Test plan & design
 
-All **test procedures** are executed according to the test plan `./test-plans/test-plan-1.jmx`, which includes a base set of procedures implemented by `Concurrency Thread Groups`. Executing the **test procedures** is a matter of adjusting the parameters (target, ramp-up, etc.) of the thread groups, and the `.properties` files located in `./scenarios` contain parameters adjusted for each **test procedure**.
+All **test procedures** are executed according to the test plan `./test-plans/test-plan-1.jmx`, which includes a base set of procedures implemented by `Concurrency Thread Groups`. Executing the **test procedures** is a matter of adjusting the parameters (target, ramp-up, etc.) of the thread groups, and the `.yaml` files located in `./scenarios` contain parameters adjusted for each **test procedure**.
 
 ## Test execution  
 
 ### Running tests
 
-Use the `jmeter` CLI command and pass in a `secrets.properties` and an operative scenario properties file. For example, to execute load tests, run:
+Use the `bzt` CLI command and pass in a `secrets.properties` and an operative scenario properties file. For example, to execute load tests, run:
 
 ```bash
-jmeter -n \
-  -t test-plans/test-plan-1.jmx \
-  -q secrets.properties \
-  -q scenarios/load.properties \
-  -l results/load-test.jtl
+bzt properties.yaml scenarios/load.yaml
 ```
+
 ## Test reports  & metrics
 
 ### Report output
 
-Test reports can be generated with JMeter by passing in the parameter  `-l results/results.jtl` when executing tests.
+Test reports are generated when executing tests and output to timestamped folders.
 
 ### Grafana
 
-Real-time test results can be viewed in on your Grafana dashboard.
+Real-time test results can be viewed in on the team's Grafana dashboard.

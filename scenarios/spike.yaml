@@ -1,0 +1,14 @@
+execution:
+  - scenario: spike_test
+    concurrency: 4
+    ramp-up: 1m
+    steps: 2
+    hold-for: 3m
+
+scenarios:
+  spike_test:
+    script: "../test-plans/test-plan-1.jmx"
+
+settings:
+  env:
+    TAG_SCENARIO: spike

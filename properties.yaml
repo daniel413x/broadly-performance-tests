@@ -1,0 +1,16 @@
+# properties.yaml should always be passed in as a parameter in tandem with the operative test procedure, e.g.:
+
+# bzt properties.yaml scenarios/smoke.yaml
+
+settings:
+  env:
+    TAG_ENV: staging
+    STRIPE_SECRET: ${STRIPE_SECRET}
+    STRIPE_ACCOUNT: ${STRIPE_ACCOUNT}
+    INFLUX_DB_TOKEN: ${INFLUX_DB_TOKEN}
+    INFLUX_DB_URL: ${INFLUX_DB_URL}
+
+reporting:
+  - module: final-stats
+  - module: console
+  - module: junit-xml
