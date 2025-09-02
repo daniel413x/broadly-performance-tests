@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan">
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-    </TestPlan>
+    <boolProp name="TestPlan.functional_mode">false</boolProp></TestPlan>
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="false">
         <collectionProp name="Arguments.arguments"/>
@@ -15,32 +15,20 @@
         <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
           <collectionProp name="Arguments.arguments"/>
         </elementProp>
-        <stringProp name="HTTPSampler.implementation"></stringProp>
+        <stringProp name="HTTPSampler.implementation"/>
       </ConfigTestElement>
       <hashTree/>
       <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
         <collectionProp name="CookieManager.cookies"/>
         <boolProp name="CookieManager.clearEachIteration">false</boolProp>
         <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
-      </CookieManager>
+      <stringProp name="CookieManager.implementation">org.apache.jmeter.protocol.http.control.HC4CookieHandler</stringProp></CookieManager>
       <hashTree/>
-      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Scenario 1 - Using Filters">
-        <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <stringProp name="TargetLevel">1</stringProp>
-        <stringProp name="RampUp">1</stringProp>
-        <stringProp name="Steps">1</stringProp>
-        <stringProp name="Hold">1</stringProp>
-        <stringProp name="LogFilename"></stringProp>
-        <stringProp name="Iterations"></stringProp>
-        <boolProp name="same_user_on_next_iteration">false</boolProp>
-        <stringProp name="Unit">M</stringProp>
-      </com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup>
-      <hashTree>
+      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Scenario 1 - Using Filters" enabled="true"><elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/><stringProp name="ThreadGroup.on_sample_error">continue</stringProp><stringProp name="TargetLevel">1</stringProp><stringProp name="RampUp">120</stringProp><stringProp name="Steps">2</stringProp><stringProp name="Hold">120</stringProp><stringProp name="LogFilename"></stringProp><stringProp name="Iterations"></stringProp><stringProp name="Unit">S</stringProp></com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup><hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Scenario 1 - Using Filters"/>
         <hashTree>
           <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Enter Min Price">
-            <stringProp name="IfController.condition">${__groovy((vars.get(&quot;maxPrice&quot;)) &gt; (vars.get(&quot;minPrice&quot;)))}</stringProp>
+            <stringProp name="IfController.condition">${__groovy((vars.get("maxPrice")) &gt; (vars.get("minPrice")))}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
             <stringProp name="TestPlan.comments">Enter the minPrice field in two parts: first, split the minPrice var and enter the tens digit place; second, enter the whole minPrice. Will be simplified with debounce implemented client-side.</stringProp>
@@ -73,7 +61,7 @@
                     <elementProp name="input" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">true</boolProp>
                       <stringProp name="Argument.name">input</stringProp>
-                      <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;sort&quot;:&quot;curated&quot;,&quot;minPrice&quot;:&quot;${firstDigit}&quot;,&quot;maxPrice&quot;:&quot;5&quot;,&quot;tags&quot;:[],&quot;category&quot;:null,&quot;tenantSlug&quot;:null,&quot;limit&quot;:8,&quot;direction&quot;:&quot;forward&quot;},&quot;meta&quot;:{&quot;values&quot;:{&quot;category&quot;:[&quot;undefined&quot;],&quot;tenantSlug&quot;:[&quot;undefined&quot;]}}}}</stringProp>
+                      <stringProp name="Argument.value">{"0":{"json":{"sort":"curated","minPrice":"${firstDigit}","maxPrice":"5","tags":[],"category":null,"tenantSlug":null,"limit":8,"direction":"forward"},"meta":{"values":{"category":["undefined"],"tenantSlug":["undefined"]}}}}</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     </elementProp>
@@ -134,11 +122,11 @@
                 <hashTree/>
                 <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Obtain firstDigit" enabled="true">
                   <stringProp name="scriptLanguage">groovy</stringProp>
-                  <stringProp name="parameters"></stringProp>
-                  <stringProp name="filename"></stringProp>
+                  <stringProp name="parameters"/>
+                  <stringProp name="filename"/>
                   <stringProp name="cacheKey">true</stringProp>
-                  <stringProp name="script">String minPrice = vars.get(&quot;minPrice&quot;)
-vars.put(&quot;firstDigit&quot;, minPrice[0])
+                  <stringProp name="script">String minPrice = vars.get("minPrice")
+vars.put("firstDigit", minPrice[0])
 </stringProp>
                 </JSR223PreProcessor>
                 <hashTree/>
@@ -171,7 +159,7 @@ vars.put(&quot;firstDigit&quot;, minPrice[0])
                     <elementProp name="input" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">true</boolProp>
                       <stringProp name="Argument.name">input</stringProp>
-                      <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;sort&quot;:&quot;curated&quot;,&quot;minPrice&quot;:&quot;${minPrice}&quot;,&quot;maxPrice&quot;:&quot;5&quot;,&quot;tags&quot;:[],&quot;category&quot;:null,&quot;tenantSlug&quot;:null,&quot;limit&quot;:8,&quot;direction&quot;:&quot;forward&quot;},&quot;meta&quot;:{&quot;values&quot;:{&quot;category&quot;:[&quot;undefined&quot;],&quot;tenantSlug&quot;:[&quot;undefined&quot;]}}}}</stringProp>
+                      <stringProp name="Argument.value">{"0":{"json":{"sort":"curated","minPrice":"${minPrice}","maxPrice":"5","tags":[],"category":null,"tenantSlug":null,"limit":8,"direction":"forward"},"meta":{"values":{"category":["undefined"],"tenantSlug":["undefined"]}}}}</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     </elementProp>
@@ -234,7 +222,7 @@ vars.put(&quot;firstDigit&quot;, minPrice[0])
             </hashTree>
           </hashTree>
           <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Enter Max Price">
-            <stringProp name="IfController.condition">${__groovy((vars.get(&quot;minPrice&quot;)) &lt; (vars.get(&quot;maxPrice&quot;)))}</stringProp>
+            <stringProp name="IfController.condition">${__groovy((vars.get("minPrice")) &lt; (vars.get("maxPrice")))}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
             <stringProp name="TestPlan.comments">Enter the maxPrice field in two parts: first, split the maxPrice var and enter the tens digit place; second, enter the whole maxPrice. Will be simplified with debounce implemented client-side.</stringProp>
@@ -267,7 +255,7 @@ vars.put(&quot;firstDigit&quot;, minPrice[0])
                     <elementProp name="input" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">true</boolProp>
                       <stringProp name="Argument.name">input</stringProp>
-                      <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;sort&quot;:&quot;curated&quot;,&quot;minPrice&quot;:&quot;${minPrice}&quot;,&quot;maxPrice&quot;:&quot;${firstDigit}&quot;,&quot;tags&quot;:[],&quot;category&quot;:null,&quot;tenantSlug&quot;:null,&quot;limit&quot;:8,&quot;direction&quot;:&quot;forward&quot;},&quot;meta&quot;:{&quot;values&quot;:{&quot;category&quot;:[&quot;undefined&quot;],&quot;tenantSlug&quot;:[&quot;undefined&quot;]}}}}</stringProp>
+                      <stringProp name="Argument.value">{"0":{"json":{"sort":"curated","minPrice":"${minPrice}","maxPrice":"${firstDigit}","tags":[],"category":null,"tenantSlug":null,"limit":8,"direction":"forward"},"meta":{"values":{"category":["undefined"],"tenantSlug":["undefined"]}}}}</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     </elementProp>
@@ -328,11 +316,11 @@ vars.put(&quot;firstDigit&quot;, minPrice[0])
                 <hashTree/>
                 <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Obtain firstDigit" enabled="true">
                   <stringProp name="scriptLanguage">groovy</stringProp>
-                  <stringProp name="parameters"></stringProp>
-                  <stringProp name="filename"></stringProp>
+                  <stringProp name="parameters"/>
+                  <stringProp name="filename"/>
                   <stringProp name="cacheKey">true</stringProp>
-                  <stringProp name="script">String maxPrice = vars.get(&quot;maxPrice&quot;)
-vars.put(&quot;firstDigit&quot;, maxPrice[0])
+                  <stringProp name="script">String maxPrice = vars.get("maxPrice")
+vars.put("firstDigit", maxPrice[0])
 </stringProp>
                 </JSR223PreProcessor>
                 <hashTree/>
@@ -365,7 +353,7 @@ vars.put(&quot;firstDigit&quot;, maxPrice[0])
                     <elementProp name="input" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">true</boolProp>
                       <stringProp name="Argument.name">input</stringProp>
-                      <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;sort&quot;:&quot;curated&quot;,&quot;minPrice&quot;:&quot;${minPrice}&quot;,&quot;maxPrice&quot;:&quot;${maxPrice}&quot;,&quot;tags&quot;:[],&quot;category&quot;:null,&quot;tenantSlug&quot;:null,&quot;limit&quot;:8,&quot;direction&quot;:&quot;forward&quot;},&quot;meta&quot;:{&quot;values&quot;:{&quot;category&quot;:[&quot;undefined&quot;],&quot;tenantSlug&quot;:[&quot;undefined&quot;]}}}}</stringProp>
+                      <stringProp name="Argument.value">{"0":{"json":{"sort":"curated","minPrice":"${minPrice}","maxPrice":"${maxPrice}","tags":[],"category":null,"tenantSlug":null,"limit":8,"direction":"forward"},"meta":{"values":{"category":["undefined"],"tenantSlug":["undefined"]}}}}</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     </elementProp>
@@ -430,36 +418,24 @@ vars.put(&quot;firstDigit&quot;, maxPrice[0])
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="maxPrice">
             <stringProp name="maximumValue">49</stringProp>
             <stringProp name="minimumValue">31</stringProp>
-            <stringProp name="outputFormat"></stringProp>
+            <stringProp name="outputFormat"/>
             <boolProp name="perThread">false</boolProp>
-            <stringProp name="randomSeed"></stringProp>
+            <stringProp name="randomSeed"/>
             <stringProp name="variableName">maxPrice</stringProp>
           </RandomVariableConfig>
           <hashTree/>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="minPrice">
             <stringProp name="maximumValue">49</stringProp>
             <stringProp name="minimumValue">31</stringProp>
-            <stringProp name="outputFormat"></stringProp>
+            <stringProp name="outputFormat"/>
             <boolProp name="perThread">false</boolProp>
-            <stringProp name="randomSeed"></stringProp>
+            <stringProp name="randomSeed"/>
             <stringProp name="variableName">minPrice</stringProp>
           </RandomVariableConfig>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Scenario 2 - Registering an Account">
-        <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <stringProp name="TargetLevel">1</stringProp>
-        <stringProp name="RampUp">1</stringProp>
-        <stringProp name="Steps">1</stringProp>
-        <stringProp name="Hold">1</stringProp>
-        <stringProp name="LogFilename"></stringProp>
-        <stringProp name="Iterations"></stringProp>
-        <boolProp name="same_user_on_next_iteration">false</boolProp>
-        <stringProp name="Unit">M</stringProp>
-      </com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup>
-      <hashTree>
+      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Scenario 2 - Registering an Account" enabled="true"><elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/><stringProp name="ThreadGroup.on_sample_error">continue</stringProp><stringProp name="TargetLevel">1</stringProp><stringProp name="RampUp">120</stringProp><stringProp name="Steps">2</stringProp><stringProp name="Hold">120</stringProp><stringProp name="LogFilename"></stringProp><stringProp name="Iterations"></stringProp><stringProp name="Unit">S</stringProp></com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup><hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Scenario 2 - Registering an Account"/>
         <hashTree>
           <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Complete The Registration Form and Click &quot;Create account&quot;">
@@ -480,7 +456,7 @@ vars.put(&quot;firstDigit&quot;, maxPrice[0])
                 <collectionProp name="Arguments.arguments">
                   <elementProp name="" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;email&quot;:&quot;perftester-${uuid}@broadly.com&quot;,&quot;username&quot;:&quot;perftester-${uuid}&quot;,&quot;password&quot;:&quot;perftester-${uuid}&quot;}}}</stringProp>
+                    <stringProp name="Argument.value">{"0":{"json":{"email":"perftester-${uuid}@broadly.com","username":"perftester-${uuid}","password":"perftester-${uuid}"}}}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                   </elementProp>
                 </collectionProp>
@@ -544,11 +520,11 @@ vars.put(&quot;firstDigit&quot;, maxPrice[0])
               <hashTree/>
               <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Obtain UUID">
                 <stringProp name="scriptLanguage">groovy</stringProp>
-                <stringProp name="parameters"></stringProp>
-                <stringProp name="filename"></stringProp>
+                <stringProp name="parameters"/>
+                <stringProp name="filename"/>
                 <stringProp name="cacheKey">true</stringProp>
                 <stringProp name="script">def uuid = java.util.UUID.randomUUID().toString().substring(0,8)
-vars.put(&apos;uuid&apos;, uuid)</stringProp>
+vars.put('uuid', uuid)</stringProp>
               </JSR223PreProcessor>
               <hashTree/>
             </hashTree>
@@ -713,19 +689,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
           </hashTree>
         </hashTree>
       </hashTree>
-      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Scenario 3 - Loading Products">
-        <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <stringProp name="TargetLevel">1</stringProp>
-        <stringProp name="RampUp">1</stringProp>
-        <stringProp name="Steps">1</stringProp>
-        <stringProp name="Hold">1</stringProp>
-        <stringProp name="LogFilename"></stringProp>
-        <stringProp name="Iterations"></stringProp>
-        <boolProp name="same_user_on_next_iteration">false</boolProp>
-        <stringProp name="Unit">M</stringProp>
-      </com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup>
-      <hashTree>
+      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Scenario 3 - Loading Products" enabled="true"><elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/><stringProp name="ThreadGroup.on_sample_error">continue</stringProp><stringProp name="TargetLevel">1</stringProp><stringProp name="RampUp">120</stringProp><stringProp name="Steps">2</stringProp><stringProp name="Hold">120</stringProp><stringProp name="LogFilename"></stringProp><stringProp name="Iterations"></stringProp><stringProp name="Unit">S</stringProp></com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup><hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Scenario 3 - Loading Products"/>
         <hashTree>
           <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click &quot;Load more&quot;">
@@ -754,7 +718,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                   <elementProp name="input" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.name">input</stringProp>
-                    <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;sort&quot;:&quot;curated&quot;,&quot;minPrice&quot;:&quot;&quot;,&quot;maxPrice&quot;:&quot;&quot;,&quot;tags&quot;:[],&quot;category&quot;:null,&quot;tenantSlug&quot;:null,&quot;limit&quot;:8,&quot;cursor&quot;:2,&quot;direction&quot;:&quot;forward&quot;},&quot;meta&quot;:{&quot;values&quot;:{&quot;category&quot;:[&quot;undefined&quot;],&quot;tenantSlug&quot;:[&quot;undefined&quot;]}}}}</stringProp>
+                    <stringProp name="Argument.value">{"0":{"json":{"sort":"curated","minPrice":"","maxPrice":"","tags":[],"category":null,"tenantSlug":null,"limit":8,"cursor":2,"direction":"forward"},"meta":{"values":{"category":["undefined"],"tenantSlug":["undefined"]}}}}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   </elementProp>
@@ -840,7 +804,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                   <elementProp name="input" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.name">input</stringProp>
-                    <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;sort&quot;:&quot;curated&quot;,&quot;minPrice&quot;:&quot;&quot;,&quot;maxPrice&quot;:&quot;&quot;,&quot;tags&quot;:[],&quot;category&quot;:null,&quot;tenantSlug&quot;:null,&quot;limit&quot;:8,&quot;cursor&quot;:3,&quot;direction&quot;:&quot;forward&quot;},&quot;meta&quot;:{&quot;values&quot;:{&quot;category&quot;:[&quot;undefined&quot;],&quot;tenantSlug&quot;:[&quot;undefined&quot;]}}}}</stringProp>
+                    <stringProp name="Argument.value">{"0":{"json":{"sort":"curated","minPrice":"","maxPrice":"","tags":[],"category":null,"tenantSlug":null,"limit":8,"cursor":3,"direction":"forward"},"meta":{"values":{"category":["undefined"],"tenantSlug":["undefined"]}}}}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                   </elementProp>
                 </collectionProp>
@@ -926,7 +890,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                   <elementProp name="input" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.name">input</stringProp>
-                    <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;sort&quot;:&quot;curated&quot;,&quot;minPrice&quot;:&quot;&quot;,&quot;maxPrice&quot;:&quot;&quot;,&quot;tags&quot;:[],&quot;category&quot;:null,&quot;tenantSlug&quot;:null,&quot;limit&quot;:8,&quot;cursor&quot;:4,&quot;direction&quot;:&quot;forward&quot;},&quot;meta&quot;:{&quot;values&quot;:{&quot;category&quot;:[&quot;undefined&quot;],&quot;tenantSlug&quot;:[&quot;undefined&quot;]}}}}</stringProp>
+                    <stringProp name="Argument.value">{"0":{"json":{"sort":"curated","minPrice":"","maxPrice":"","tags":[],"category":null,"tenantSlug":null,"limit":8,"cursor":4,"direction":"forward"},"meta":{"values":{"category":["undefined"],"tenantSlug":["undefined"]}}}}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   </elementProp>
@@ -1018,7 +982,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                   <elementProp name="input" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.name">input</stringProp>
-                    <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;sort&quot;:&quot;curated&quot;,&quot;minPrice&quot;:&quot;&quot;,&quot;maxPrice&quot;:&quot;&quot;,&quot;tags&quot;:[],&quot;category&quot;:null,&quot;tenantSlug&quot;:null,&quot;limit&quot;:8,&quot;cursor&quot;:5,&quot;direction&quot;:&quot;forward&quot;},&quot;meta&quot;:{&quot;values&quot;:{&quot;category&quot;:[&quot;undefined&quot;],&quot;tenantSlug&quot;:[&quot;undefined&quot;]}}}}</stringProp>
+                    <stringProp name="Argument.value">{"0":{"json":{"sort":"curated","minPrice":"","maxPrice":"","tags":[],"category":null,"tenantSlug":null,"limit":8,"cursor":5,"direction":"forward"},"meta":{"values":{"category":["undefined"],"tenantSlug":["undefined"]}}}}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                   </elementProp>
                 </collectionProp>
@@ -1103,7 +1067,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                   <elementProp name="input" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.name">input</stringProp>
-                    <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;sort&quot;:&quot;curated&quot;,&quot;minPrice&quot;:&quot;&quot;,&quot;maxPrice&quot;:&quot;&quot;,&quot;tags&quot;:[],&quot;category&quot;:null,&quot;tenantSlug&quot;:null,&quot;limit&quot;:8,&quot;cursor&quot;:6,&quot;direction&quot;:&quot;forward&quot;},&quot;meta&quot;:{&quot;values&quot;:{&quot;category&quot;:[&quot;undefined&quot;],&quot;tenantSlug&quot;:[&quot;undefined&quot;]}}}}</stringProp>
+                    <stringProp name="Argument.value">{"0":{"json":{"sort":"curated","minPrice":"","maxPrice":"","tags":[],"category":null,"tenantSlug":null,"limit":8,"cursor":6,"direction":"forward"},"meta":{"values":{"category":["undefined"],"tenantSlug":["undefined"]}}}}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                   </elementProp>
                 </collectionProp>
@@ -1188,7 +1152,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                   <elementProp name="input" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.name">input</stringProp>
-                    <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;sort&quot;:&quot;curated&quot;,&quot;minPrice&quot;:&quot;&quot;,&quot;maxPrice&quot;:&quot;&quot;,&quot;tags&quot;:[],&quot;category&quot;:null,&quot;tenantSlug&quot;:null,&quot;limit&quot;:8,&quot;cursor&quot;:7,&quot;direction&quot;:&quot;forward&quot;},&quot;meta&quot;:{&quot;values&quot;:{&quot;category&quot;:[&quot;undefined&quot;],&quot;tenantSlug&quot;:[&quot;undefined&quot;]}}}}</stringProp>
+                    <stringProp name="Argument.value">{"0":{"json":{"sort":"curated","minPrice":"","maxPrice":"","tags":[],"category":null,"tenantSlug":null,"limit":8,"cursor":7,"direction":"forward"},"meta":{"values":{"category":["undefined"],"tenantSlug":["undefined"]}}}}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                   </elementProp>
                 </collectionProp>
@@ -1250,29 +1214,17 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
           </hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="userSpeed">
             <stringProp name="variableName">userSpeed</stringProp>
-            <stringProp name="outputFormat"></stringProp>
+            <stringProp name="outputFormat"/>
             <stringProp name="minimumValue">2000</stringProp>
             <stringProp name="maximumValue">8000</stringProp>
-            <stringProp name="randomSeed"></stringProp>
+            <stringProp name="randomSeed"/>
             <boolProp name="perThread">false</boolProp>
             <stringProp name="TestPlan.comments">Some users load products slowly, some quickly, etc.</stringProp>
           </RandomVariableConfig>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Scenario 4 - Buying A Product">
-        <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <stringProp name="TargetLevel">1</stringProp>
-        <stringProp name="RampUp">1</stringProp>
-        <stringProp name="Steps">1</stringProp>
-        <stringProp name="Hold">1</stringProp>
-        <stringProp name="LogFilename"></stringProp>
-        <stringProp name="Iterations"></stringProp>
-        <boolProp name="same_user_on_next_iteration">false</boolProp>
-        <stringProp name="Unit">M</stringProp>
-      </com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup>
-      <hashTree>
+      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui" testclass="com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup" testname="Scenario 4 - Buying A Product" enabled="true"><elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/><stringProp name="ThreadGroup.on_sample_error">continue</stringProp><stringProp name="TargetLevel">1</stringProp><stringProp name="RampUp">120</stringProp><stringProp name="Steps">2</stringProp><stringProp name="Hold">120</stringProp><stringProp name="LogFilename"></stringProp><stringProp name="Iterations"></stringProp><stringProp name="Unit">S</stringProp></com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup><hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Scenario 4 - Buying A Product"/>
         <hashTree>
           <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Complete The Registration Form and Click &quot;Create account&quot;">
@@ -1293,7 +1245,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                 <collectionProp name="Arguments.arguments">
                   <elementProp name="" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;email&quot;:&quot;perftester-${uuid}@broadly.com&quot;,&quot;username&quot;:&quot;perftester-${uuid}&quot;,&quot;password&quot;:&quot;perftester-${uuid}&quot;}}}</stringProp>
+                    <stringProp name="Argument.value">{"0":{"json":{"email":"perftester-${uuid}@broadly.com","username":"perftester-${uuid}","password":"perftester-${uuid}"}}}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                   </elementProp>
                 </collectionProp>
@@ -1776,7 +1728,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                   <elementProp name="input" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.name">input</stringProp>
-                    <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:null,&quot;meta&quot;:{&quot;values&quot;:[&quot;undefined&quot;]}},&quot;1&quot;:{&quot;json&quot;:null,&quot;meta&quot;:{&quot;values&quot;:[&quot;undefined&quot;]}},&quot;2&quot;:{&quot;json&quot;:{&quot;sort&quot;:&quot;curated&quot;,&quot;minPrice&quot;:&quot;&quot;,&quot;maxPrice&quot;:&quot;&quot;,&quot;tags&quot;:[],&quot;category&quot;:null,&quot;tenantSlug&quot;:null,&quot;limit&quot;:8,&quot;direction&quot;:&quot;forward&quot;},&quot;meta&quot;:{&quot;values&quot;:{&quot;category&quot;:[&quot;undefined&quot;],&quot;tenantSlug&quot;:[&quot;undefined&quot;]}}}}</stringProp>
+                    <stringProp name="Argument.value">{"0":{"json":null,"meta":{"values":["undefined"]}},"1":{"json":null,"meta":{"values":["undefined"]}},"2":{"json":{"sort":"curated","minPrice":"","maxPrice":"","tags":[],"category":null,"tenantSlug":null,"limit":8,"direction":"forward"},"meta":{"values":{"category":["undefined"],"tenantSlug":["undefined"]}}}}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   </elementProp>
@@ -2346,7 +2298,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                   <elementProp name="input" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.name">input</stringProp>
-                    <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;id&quot;:&quot;${productId}&quot;}}}</stringProp>
+                    <stringProp name="Argument.value">{"0":{"json":{"id":"${productId}"}}}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   </elementProp>
@@ -2571,7 +2523,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add a Product To The Cart">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add a Product To The Cart" enabled="true">
               <stringProp name="HTTPSampler.domain">broadly-flame.vercel.app</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2593,7 +2545,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                   <elementProp name="input" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.name">input</stringProp>
-                    <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;ids&quot;:[&quot;${productId}&quot;]}}}</stringProp>
+                    <stringProp name="Argument.value">{"0":{"json":{"ids":["${productId}"]}}}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   </elementProp>
@@ -2666,7 +2618,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                 <collectionProp name="Arguments.arguments">
                   <elementProp name="" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">{&quot;0&quot;:{&quot;json&quot;:{&quot;tenantSlug&quot;:&quot;jmeter-shop&quot;,&quot;productIds&quot;:[&quot;${productId}&quot;],&quot;api&quot;:&quot;true&quot;}}}</stringProp>
+                    <stringProp name="Argument.value">{"0":{"json":{"tenantSlug":"jmeter-shop","productIds":["${productId}"],"api":"true"}}}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                   </elementProp>
                 </collectionProp>
@@ -2785,9 +2737,9 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
                   <elementProp name="" elementType="Authorization">
                     <stringProp name="Authorization.url">https://api.stripe.com</stringProp>
                     <stringProp name="Authorization.username">${__env(STRIPE_SECRET_KEY)}</stringProp>
-                    <stringProp name="Authorization.password"></stringProp>
-                    <stringProp name="Authorization.domain"></stringProp>
-                    <stringProp name="Authorization.realm"></stringProp>
+                    <stringProp name="Authorization.password"/>
+                    <stringProp name="Authorization.domain"/>
+                    <stringProp name="Authorization.realm"/>
                   </elementProp>
                 </collectionProp>
                 <boolProp name="AuthManager.controlledByThreadGroup">false</boolProp>
@@ -2797,11 +2749,11 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
           </hashTree>
           <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Obtain UUID">
             <stringProp name="scriptLanguage">groovy</stringProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"/>
+            <stringProp name="filename"/>
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="script">def uuid = java.util.UUID.randomUUID().toString().substring(0,8)
-vars.put(&apos;uuid&apos;, uuid)</stringProp>
+vars.put('uuid', uuid)</stringProp>
           </JSR223PreProcessor>
           <hashTree/>
         </hashTree>
@@ -2842,18 +2794,18 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
         <boolProp name="ProxyControlGui.capture_http_headers">true</boolProp>
         <intProp name="ProxyControlGui.grouping_mode">4</intProp>
         <boolProp name="ProxyControlGui.add_assertion">false</boolProp>
-        <stringProp name="ProxyControlGui.sampler_type_name"></stringProp>
+        <stringProp name="ProxyControlGui.sampler_type_name"/>
         <boolProp name="ProxyControlGui.sampler_redirect_automatically">false</boolProp>
         <boolProp name="ProxyControlGui.sampler_follow_redirects">true</boolProp>
         <boolProp name="ProxyControlGui.use_keepalive">true</boolProp>
         <boolProp name="ProxyControlGui.sampler_download_images">false</boolProp>
         <boolProp name="ProxyControlGui.regex_match">true</boolProp>
-        <stringProp name="ProxyControlGui.content_type_include"></stringProp>
-        <stringProp name="ProxyControlGui.content_type_exclude"></stringProp>
+        <stringProp name="ProxyControlGui.content_type_include"/>
+        <stringProp name="ProxyControlGui.content_type_exclude"/>
         <boolProp name="ProxyControlGui.notify_child_sl_filtered">false</boolProp>
         <stringProp name="ProxyControlGui.proxy_prefix_http_sampler_name">Submit Payment</stringProp>
         <intProp name="ProxyControlGui.proxy_http_sampler_naming_mode">1</intProp>
-        <stringProp name="ProxyControlGui.proxy_pause_http_sampler"></stringProp>
+        <stringProp name="ProxyControlGui.proxy_pause_http_sampler"/>
         <boolProp name="ProxyControlGui.detect_graphql_request">true</boolProp>
         <stringProp name="ProxyControlGui.default_encoding">UTF-8</stringProp>
       </ProxyControl>
@@ -2940,7 +2892,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
         <stringProp name="filename">/home/daniel413x/2025/multitenant-ecommerce/performance-tests/results/load-test.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -2974,7 +2926,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename"></stringProp>
+        <stringProp name="filename"/>
       </ResultCollector>
       <hashTree/>
       <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener">
@@ -3022,7 +2974,7 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
             </elementProp>
             <elementProp name="eventTags" elementType="Argument">
               <stringProp name="Argument.name">eventTags</stringProp>
-              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.value"/>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="TAG_env" elementType="Argument">
@@ -3045,6 +2997,6 @@ vars.put(&apos;uuid&apos;, uuid)</stringProp>
         <stringProp name="classname">org.apache.jmeter.visualizers.backend.influxdb.InfluxdbBackendListenerClient</stringProp>
       </BackendListener>
       <hashTree/>
-    </hashTree>
+    <ResultCollector testname="KPI Writer" testclass="ResultCollector" guiclass="SimpleDataWriter"><stringProp name="filename">/home/daniel413x/2025/multitenant-ecommerce/performance-tests/2025-09-02_01-04-37.081805/kpi.jtl</stringProp><objProp><name>saveConfig</name><value class="SampleSaveConfiguration"><xml>false</xml><fieldNames>true</fieldNames><time>true</time><timestamp>true</timestamp><latency>true</latency><connectTime>true</connectTime><success>true</success><label>true</label><code>true</code><message>true</message><threadName>true</threadName><dataType>false</dataType><encoding>false</encoding><assertions>false</assertions><subresults>false</subresults><responseData>false</responseData><samplerData>false</samplerData><responseHeaders>false</responseHeaders><requestHeaders>false</requestHeaders><responseDataOnError>false</responseDataOnError><saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage><bytes>true</bytes><hostname>true</hostname><threadCounts>true</threadCounts><url>false</url></value></objProp></ResultCollector><hashTree/><ResultCollector testname="Errors Writer" testclass="ResultCollector" guiclass="SimpleDataWriter"><stringProp name="filename">/home/daniel413x/2025/multitenant-ecommerce/performance-tests/2025-09-02_01-04-37.081805/error.jtl</stringProp><objProp><name>saveConfig</name><value class="SampleSaveConfiguration"><xml>true</xml><fieldNames>true</fieldNames><time>true</time><timestamp>true</timestamp><latency>true</latency><success>true</success><label>true</label><code>true</code><message>true</message><threadName>true</threadName><dataType>true</dataType><encoding>true</encoding><assertions>true</assertions><subresults>true</subresults><responseData>false</responseData><samplerData>false</samplerData><responseHeaders>true</responseHeaders><requestHeaders>true</requestHeaders><responseDataOnError>true</responseDataOnError><saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage><bytes>true</bytes><threadCounts>true</threadCounts><url>true</url></value></objProp><boolProp name="ResultCollector.error_logging">true</boolProp></ResultCollector><hashTree/></hashTree>
   </hashTree>
 </jmeterTestPlan>

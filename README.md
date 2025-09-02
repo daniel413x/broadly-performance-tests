@@ -3,7 +3,7 @@
 
 ## Objective
 
-Fulfill performance testing for the Broadly platform by carrying out **load testing**, **stress testing**, **soak testing**, and **spike testing** (the **"test procedures"**) and generating test reports thereof. 
+Fulfill performance testing for the Broadly platform by carrying out **smoke testing**, **load testing**, **stress testing**, **soak testing**, and **spike testing** (the **"test procedures"**) and generating test reports thereof. 
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ BlazeMeter Taurus must be installed and available via the CLI as `bzt`. The proj
 Environment variables must be defined matching those expected by the file `scenarios/properties.yaml`.
 
 ```bash
-export STRIPE_SECRET=VALUE     # Found in the Stripe dashboard
+export STRIPE_SECRET_KEY=VALUE     # Found in the Stripe dashboard
 export STRIPE_ACCOUNT=VALUE  # Found in the Stripe dashboard
 export INFLUX_DB_TOKEN=VALUE # Created in the Influx DB GUI
 export INFLUX_DB_URL=VALUE      # For example: http://localhost:8086/api/v2/write?org=broadly&bucket=jmeter
