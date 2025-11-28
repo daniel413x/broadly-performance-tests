@@ -22,6 +22,10 @@ export INFLUX_DB_TOKEN=VALUE # Created in the Influx DB GUI
 export INFLUX_DB_URL=VALUE      # For example: http://localhost:8086/api/v2/write?org=broadly&bucket=jmeter
 ```
 
+### JMeter agents
+
+The main branch is configured for a distributed workload in order to execute tests at high-volume concurrency. A list of JMeter server-agent endpoints must be passed into the scenario `.yaml` `distributed` blocks. In the main branch, a helper script `add_distributed_hosts.sh` can do this automatically if `kubectl` is available in the orchestrating client.
+
 ## Structure
 
 Test plans (`.jmx`) are located in `./test-plans`. The `.yaml` configurations for executing the test plans according to the **test procedures** are located in `./scenarios`.
@@ -30,7 +34,15 @@ Test plans (`.jmx`) are located in `./test-plans`. The `.yaml` configurations fo
 
 All **test procedures** are executed according to the test plan `./test-plans/test-plan-1.jmx`, which includes a base set of procedures implemented by `Concurrency Thread Groups`. Executing the **test procedures** is a matter of adjusting the parameters (target, ramp-up, etc.) of the thread groups, and the `.yaml` files located in `./scenarios` contain parameters adjusted for each **test procedure**.
 
-## Test execution  
+## Test execution
+
+### Compiling endpoints
+
+Use the `add_distributed_hosts.sh` script to automatically compile a list of JMeter server-agent endpoints:
+
+```bash
+./add_distributed_hosts.sh
+```
 
 ### Running tests
 

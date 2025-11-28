@@ -4,6 +4,8 @@ execution:
     ramp-up: 2m
     steps: 2
     hold-for: 2m
+    distributed:
+      <distributed>
 
 scenarios:
   stress_test:

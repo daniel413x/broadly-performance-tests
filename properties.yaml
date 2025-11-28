@@ -3,12 +3,22 @@
 # bzt properties.yaml scenarios/smoke.yaml
 
 settings:
+  # the env block is relevant to variables referenced in .jmx as well as those referenced in other yaml files
+  # an env var referenced in either JMeter .jmx OR Taurus .yaml files must first be defined heres
   env:
     TAG_ENV: staging
     STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
     STRIPE_ACCOUNT: ${STRIPE_ACCOUNT}
     INFLUX_DB_TOKEN: ${INFLUX_DB_TOKEN}
     INFLUX_DB_URL: ${INFLUX_DB_URL}
+
+modules:
+  jmeter:
+    # in distributed setting, important that the version matches that of the orchestrating system
+    version: "5.6.3"
+    properties:
+      server.rmi.ssl.disable: true
+      client.rmi.ssl.disable: true
 
 reporting:
   - module: final-stats

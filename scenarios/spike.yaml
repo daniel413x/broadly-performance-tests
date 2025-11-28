@@ -4,6 +4,8 @@ execution:
     ramp-up: 1m
     steps: 2
     hold-for: 3m
+    distributed:
+      <distributed>
 
 scenarios:
   spike_test:

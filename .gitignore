@@ -10,3 +10,4 @@ results/
 **/report-output/
 secrets.properties
 **/modified_*.jmx
+distributed_hosts
